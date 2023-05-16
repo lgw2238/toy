@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.lgw.user.mapper.UserMapper">
+
+	<select id="idChk" resultType="int">
+		/* SQL ID : user.idChk 유저 아이디  체크*/
+		SELECT COUNT(*) 
+		  FROM TB_USER_INFO
+		 WHERE userId = #{userId}
+	</select>
+	
+	
+	<select id="findOauthUserInfo" resultType="int">
+		/* SQL ID : user.findOauthUserInfo Oauth 유저 아이디  체크*/
+		SELECT COUNT(*) 
+		  FROM TB_USER_INFO
+		 WHERE userId = #{id}
+		 and userType="O"
+	</select>
+	
+	
+	<insert id="insertUserInfo" parameterType="com.project.lgw.user.vo.UserVo">
+		/* SQL mapper : user.insertUserInfo 유저정보 등록*/
+		INSERT INTO TB_USER_INFO( 
+			  userId
+			, userPw
+			, userNm
+			, email
+			, last_logined_date
+			, credential_expire_date
+			, userType
+			, userStatus
+			, create_dt
+			, update_dt
+		) VALUES (
+			  #{userId}
+			, #{userPw}
+			, #{userNm}
+			, email
+			, null
+			, null
+			, #{userType}
+			, #{userStatus}
+			, NOW()
+			, NOW()
+		)
+	</insert>
+	
+</mapper>
