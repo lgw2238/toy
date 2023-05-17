@@ -14,7 +14,7 @@ public interface UserService {
 	
 	
 	/**
-	  * @description 유저 아이디 중복체크
+	  * @description 유저 아이디 중복체크 (일반유저)
 	  * @date 2023. 5. 11.
 	  * @author lgw
 	  * @param userVo
@@ -22,7 +22,8 @@ public interface UserService {
 	  * @throws Exception
 	  */
 	public int idChk(UserVo userVo) throws Exception;
-
+	
+	public int signUp(UserVo userVo) throws Exception;
 	
 	/* oauth 2.0 naver */
 	public NaverVo requestNaverLoginAcceccToken(Map<String, String> resValue, String grant_type);

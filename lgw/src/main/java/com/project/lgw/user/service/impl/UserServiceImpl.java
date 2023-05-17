@@ -51,6 +51,25 @@ public class UserServiceImpl implements UserService {
 		return result;
 	}
 	
+	@Override
+	public int signUp(UserVo userVo) throws Exception {
+		userVo.setUserType("N");
+		userVo.setUserStatus("U");
+		
+		int returnValue = 0;
+		int result = userMapper.insertUserInfo(userVo);		
+		int result2 = userMapper.insertUserDetailInfo(userVo);
+		
+		if(result == 1) {
+			returnValue = 1;
+		}else if(result2 != 1) {
+			returnValue = 0;
+			
+		}else {
+			returnValue = 1;
+		}
+		return returnValue;
+	}
 	
 	/* naver sns Login*/
 

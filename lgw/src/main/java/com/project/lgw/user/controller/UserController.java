@@ -1,5 +1,7 @@
 package com.project.lgw.user.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.time.LocalDate;
@@ -19,11 +21,14 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.project.lgw.base.controller.BaseController;
 import com.project.lgw.user.service.UserService;
 import com.project.lgw.user.vo.UserVo;
 import com.project.lgw.user.vo.KakaoVo;
@@ -33,7 +38,7 @@ import com.project.lgw.user.vo.UserProfile;
 
 @RequestMapping(value = "/user")
 @Controller
-public class UserController {
+public class UserController extends BaseController {
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	   
 	 @Value("${api.naver.client_id}")
@@ -89,6 +94,31 @@ public class UserController {
 			
 			logger.info("idChk:", idChk);
 	        return idChk;
+	        
+	    }
+		
+		// 일반 회원 가입
+		@RequestMapping(value = "/signUp")
+	    public void signUp(HttpServletRequest request,
+	    		HttpServletResponse response, Model model, @RequestBody UserVo userVo ) throws Exception {
+			
+			int result = 0;
+			String resultCode = "";
+			String resultMsg = "";
+			PrintWriter out = response.getWriter();
+			try {
+				result = userSerivce.signUp(userVo);
+				resultCode = "200";
+				resultMsg = "회원가입 완료되었습니다.";
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				resultCode = "100";
+				resultMsg = "회원가입에 실패하였습니다.";
+				
+			}
+			
+			out.print(getResultModel(resultCode, resultMsg, null, null));
 	        
 	    }
 		

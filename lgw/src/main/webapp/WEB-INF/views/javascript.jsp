@@ -34,8 +34,43 @@ function goSignUp(){
 function completeJoin(){
 	var validation = $("#signValidation").val();
 	if(validationUserInfo()){
-		alert("회원가입이 완료되었습니다. \n로그인 화면으로 이동합니다.");
-		location.href = "/";
+		var userId = $("#id").val();
+		var userPw = $("#password").val();
+		var userNm = $("#name").val();
+		var postAddress = $("#postcode").val();
+		var roadAddress = $("#roadAddress").val();
+		var jibunAddress = $("#jibunAddress").val();
+		var email = $("#email").val();
+		
+		var param = {};
+        param.userId = userId;
+        param.userPw = userPw;
+        param.userNm = userNm;
+        param.postAddress = postAddress;
+        param.roadAddress = roadAddress;
+        param.jibunAddress = jibunAddress;
+        param.email = email;
+		
+		console.log("param:", param);
+		/* 회원가입 ajax */
+		$.ajax({
+			url : "${pageContext.request.contextPath}/user/signUp",
+			type : "post",
+			dataType : "json",
+			contentType : "application/json",
+			data : JSON.stringify(param),
+			success : function(json){
+				if(json.resultCode == "200"){
+					alert(json.resultMsg+"\n로그인 화면으로 이동합니다.");
+					location.href = "/";
+				}else{
+					alert(json.resultMsg);
+				
+				}
+			}
+		})
+		
+		
 	}else{
 		
 	}
@@ -68,7 +103,6 @@ function checkId(){
 			}else if(result == 0){
 				$("#idChk").attr("value", "Y");
 				alert("사용가능한 ID입니다.");
-				alert($("#idChk").val());
 			/* 	$("#idDuplication").val("idCheck"); */
 			}
 		}
@@ -162,7 +196,7 @@ function validationUserInfo(){
 		}
 	}
 
-	return true;
+	return status;
 	
 	$("#signValidation").val(status);
 	
@@ -266,7 +300,14 @@ function daumPostcode(){
 	
 }
 
-
+/* 한글 정규식 */
+function chk_han(id) {
+    var regexp = /[a-z0-9]|[ \[\]{}()<>?|`~!@#$%^&*-_+=,.;:\"'\\]/g;
+    var value = $("#"+id).val();
+    if (regexp.test(value)) {
+        $("#"+id).val(value.replace(regexp, ''));
+    }
+}
 
 
 </script>

@@ -23,6 +23,8 @@ public class UserVo extends AuthVo implements UserDetails {
 	private String userPw;
 	private String pwExpireDate;
 	private String email;
+	private String userType;
+	private String userStatus;
 	private String phoneNo1;
 	private String phoneNo2;
 	private String phoneNo3;
@@ -37,7 +39,11 @@ public class UserVo extends AuthVo implements UserDetails {
 	private String passwordChangeAlarm;
 	private String userPassWordStatus;
 	
-	
+	// detailData
+	private String postAddress;
+	private String roadAddress;
+	private String jibunAddress;
+		
 	
 	//관리자계정 휴면주기
 	private String dormantInterval;

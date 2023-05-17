@@ -17,6 +17,10 @@ public interface UserMapper {
 	 */
 	public int idChk(UserVo userVo) throws Exception;
 	
+	public int insertUserInfo(UserVo userVo) throws Exception;
+	
+	public int insertUserDetailInfo(UserVo userVo) throws Exception;
+	
 	/**
 	 * @description Oauth 유저 아이디 체크
 	 * @date 2023.05.15 
@@ -25,5 +29,7 @@ public interface UserMapper {
 	 * @throws Exception
 	 */
 	public int findOauthUserInfo(UserProfile userProfile) throws Exception;
+	
+	
 	
 }

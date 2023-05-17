@@ -8,7 +8,7 @@
 		  FROM TB_USER_INFO
 		 WHERE userId = #{userId}
 	</select>
-	
+
 	
 	<select id="findOauthUserInfo" resultType="int">
 		/* SQL ID : user.findOauthUserInfo Oauth 유저 아이디  체크*/
@@ -36,11 +36,32 @@
 			  #{userId}
 			, #{userPw}
 			, #{userNm}
-			, email
+			, #{email}
 			, null
 			, null
 			, #{userType}
 			, #{userStatus}
+			, NOW()
+			, NOW()
+		)
+	</insert>
+	
+	<insert id="insertUserDetailInfo" parameterType="com.project.lgw.user.vo.UserVo">
+		/* SQL mapper : user.insertUserDetailInfo 유저정보 상세정보 등록*/
+		INSERT INTO TB_USER_DETAIL_INFO( 
+			  userId
+			, role
+			, postAddress
+			, roadAddress
+			, addressDetail
+			, create_dt
+			, update_dt
+		) VALUES (
+			  #{userId}
+			, #{userType}
+			, #{postAddress}
+			, #{roadAddress}
+			, #{jibunAddress}
 			, NOW()
 			, NOW()
 		)

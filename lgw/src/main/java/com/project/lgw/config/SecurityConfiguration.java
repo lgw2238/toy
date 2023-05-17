@@ -88,7 +88,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 				.formLogin()
 				.loginPage("/index")
 				.loginProcessingUrl("/loginProc")				
-				.usernameParameter("userId")
+				.usernameParameter("id")
 				.passwordParameter("password")
 				.successHandler(customAuthenticationSuccessHandler())
 				.failureHandler(customAuthenticationFailureHandler())

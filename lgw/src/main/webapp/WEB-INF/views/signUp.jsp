@@ -73,7 +73,7 @@
 									</div>
 									<div class="field half" >
 										<label for="name">name <em>*</em></label>
-										<input type="text" name="name" id="name" />
+										<input type="text" name="name" id="name" onkeyUp="javascript:chk_han('name');" />
 									</div>	
 									<div class="field half">	
 										<label for="address">address <em>*</em></label>	

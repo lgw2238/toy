@@ -50,7 +50,7 @@
 									<span class="date">${date} </span>									
 									<h2>LOGIN PAGE</h2>
 								</header>
-								<form id="loginForm" name="loginForm" method="post" action="#">
+								<form id="loginForm" name="loginForm" method="post" action="<c:url value="/loginProc"/>">
 								<div class="fields">					
 									<div class="field half" >
 										<label for="name">ID</label>

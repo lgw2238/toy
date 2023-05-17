@@ -68,6 +68,7 @@ public class bridgeController {
         return "signUp";
         
     }
+	
 	@RequestMapping("/main")
 	public ModelAndView main(HttpServletRequest request, ModelAndView mav, HttpSession session)throws Exception{
 		if( session.getAttribute("loginHistory") != null ) {
