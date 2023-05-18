@@ -17,6 +17,10 @@ public interface UserMapper {
 	 */
 	public int idChk(UserVo userVo) throws Exception;
 	
+	public UserVo selectUserInfo(UserVo userVo) throws Exception;
+	
+	public void updateUserConnectionYn(UserVo userVo) throws Exception;
+	
 	public int insertUserInfo(UserVo userVo) throws Exception;
 	
 	public int insertUserDetailInfo(UserVo userVo) throws Exception;

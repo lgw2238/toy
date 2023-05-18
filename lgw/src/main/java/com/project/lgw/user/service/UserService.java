@@ -22,9 +22,12 @@ public interface UserService {
 	  * @throws Exception
 	  */
 	public int idChk(UserVo userVo) throws Exception;
-	
+
 	public int signUp(UserVo userVo) throws Exception;
 	
+	public UserVo selectUserInfo(UserVo userVo) throws Exception;
+	
+	public void updateUserConnectionYn(UserVo userVo) throws Exception;
 	/* oauth 2.0 naver */
 	public NaverVo requestNaverLoginAcceccToken(Map<String, String> resValue, String grant_type);
 	

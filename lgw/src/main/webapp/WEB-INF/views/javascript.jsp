@@ -6,20 +6,7 @@
 <meta name="author" content="">
 <script type="text/javascript">
 
-/* 로그인 함수 */
-function goLogin(){
-	if( $("#id").val() == "" ){
-		alert("아이디를 입력 해주세요");
-		return false;
-	}
 
-	if( $("#password").val() == "" ){
-		alert("비밀번호를 입력 해주세요");
-		return false;		
-	}
-	document.getElementById('loginForm').submit();
-	
-}
 
 /* 회원가입 함수 */
 function goSignUp(){

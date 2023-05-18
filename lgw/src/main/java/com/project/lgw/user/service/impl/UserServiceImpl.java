@@ -27,12 +27,12 @@ import com.project.lgw.user.vo.UserVo;
 import com.project.lgw.user.vo.KakaoVo;
 import com.project.lgw.user.vo.NaverVo;
 import com.project.lgw.user.vo.SnsApiResponse;
-import com.project.lgw.user.vo.SnsApiResponse.KakaoAccount;
 import com.project.lgw.user.vo.UserProfile;
 
 @Service
 public class UserServiceImpl implements UserService {
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+	
 	@Autowired
 	private UserMapper userMapper;
 	
@@ -279,6 +279,18 @@ public class UserServiceImpl implements UserService {
          // 결과 반환
          return ResponseEntity.ok(responseMap);
      }
+
+	@Override
+	public UserVo selectUserInfo(UserVo userVo) throws Exception {
+		logger.info("selectUserInfo: 로그인 유저 정보 조회중.." );
+		return userMapper.selectUserInfo(userVo);
+	}
+
+	@Override
+	public void updateUserConnectionYn(UserVo userVo) throws Exception {
+		logger.info("updateUserConnectionYn: 로그인 유저 커넥션...." );
+		userMapper.updateUserConnectionYn(userVo);
+	}
 
 }
  

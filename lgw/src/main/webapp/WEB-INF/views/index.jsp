@@ -2,12 +2,36 @@
 <!DOCTYPE html>
  <%@ include file="/WEB-INF/views/javascript.jsp" %>
 <html>
+<script>	
+
+/* 로그인 함수 */
+function goLogin(){
+	if( $("#id").val() == "" ){
+		alert("아이디를 입력 해주세요");
+		return false;
+	}
+
+	if( $("#password").val() == "" ){
+		alert("비밀번호를 입력 해주세요");
+		return false;		
+	}
+	document.getElementById('loginForm').submit();
+	
+}
+
+
+
+
+
+</script>
 		<title>LGW</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<!-- 	<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript> -->
 	</head>
+
+	
 	<body class="is-preload">
 	 <%@ include file="/WEB-INF/views/common.jsp" %>
 		<!-- Wrapper -->
@@ -50,14 +74,14 @@
 									<span class="date">${date} </span>									
 									<h2>LOGIN PAGE</h2>
 								</header>
-								<form id="loginForm" name="loginForm" method="post" action="<c:url value="/loginProc"/>">
+						<form name="loginForm" id="loginForm" method="post" action="/login_proc">
 								<div class="fields">					
 									<div class="field half" >
 										<label for="name">ID</label>
 										<input type="text" name="id" id="id" />
 									</div>
 									<div class="field half" >
-										<label for="email">Password</label>
+										<label for="password">Password</label>
 										<input type="password" name="password" id="password" />
 									</div>
 								</div>

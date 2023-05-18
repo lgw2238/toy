@@ -9,17 +9,30 @@
 		 WHERE userId = #{userId}
 	</select>
 
+	<select id="selectUserInfo" parameterType="UserVo" resultType="UserVo">
+		/* SQL ID : user.selectUserInfo 유저 정보  체크*/
+			<![CDATA[
+				SELECT 
+						userId as userId,
+						userNm as userNm,
+						email as email,
+						userType as userType,
+						userStatus as userStatus
+				  FROM TB_USER_INFO
+				  WHERE userId = #{userId}
+		   ]]>
+	</select>
 	
 	<select id="findOauthUserInfo" resultType="int">
 		/* SQL ID : user.findOauthUserInfo Oauth 유저 아이디  체크*/
-		SELECT COUNT(*) 
+		  SELECT COUNT(*) 
 		  FROM TB_USER_INFO
-		 WHERE userId = #{id}
-		 and userType="O"
+		  WHERE userId = #{id}
+		  and userType="O"
 	</select>
 	
 	
-	<insert id="insertUserInfo" parameterType="com.project.lgw.user.vo.UserVo">
+	<insert id="insertUserInfo" parameterType="UserVo">
 		/* SQL mapper : user.insertUserInfo 유저정보 등록*/
 		INSERT INTO TB_USER_INFO( 
 			  userId
@@ -46,7 +59,7 @@
 		)
 	</insert>
 	
-	<insert id="insertUserDetailInfo" parameterType="com.project.lgw.user.vo.UserVo">
+	<insert id="insertUserDetailInfo" parameterType="UserVo">
 		/* SQL mapper : user.insertUserDetailInfo 유저정보 상세정보 등록*/
 		INSERT INTO TB_USER_DETAIL_INFO( 
 			  userId
@@ -66,5 +79,15 @@
 			, NOW()
 		)
 	</insert>
+	
+	
+	 <update id="updateUserConnectionYn" parameterType="UserVo">
+  		/* SQL ID : user.updateUserConnectionYn 유저 로그인 정보 수정*/
+  		   UPDATE TB_USER_INFO
+  		   SET last_login_date= NOW()
+  		     , CONNECTION_YN= #{loginProcessYn}
+  		   WHERE userId 	= #{userId}
+  	</update>
+
 	
 </mapper>
